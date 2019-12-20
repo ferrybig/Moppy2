@@ -156,7 +156,7 @@ public class MIDIScriptMapper extends MIDIEventMapper {
         int incomingNote = (int)localBindings.get("n"); // NOTE: Could be leftover binding from previously handled message!  Confirm this event is a NOTE_ON or NOTE_OFF event!
         if (((int)localBindings.get("midiCommand")) == ShortMessage.NOTE_ON) {
             // If this is a note on event, increment the sub address to the next available
-            nextOpenRoundRobinSubAddress = nextOpenRoundRobinSubAddress%8+1;
+            nextOpenRoundRobinSubAddress = nextOpenRoundRobinSubAddress%numberOfChannels+1;
             // Set the note in the map so we know what to turn off the next time we get a note off event
             currentNotes.put(nextOpenRoundRobinSubAddress, incomingNote);
             return nextOpenRoundRobinSubAddress;
